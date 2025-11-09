@@ -1,0 +1,48 @@
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+.carousel-img {
+  width: 100%;
+  border-radius: 10px;
+  transition: all 0.5s ease;
+}
+
+.nav-btn {
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.nav-btn:hover {
+  background-color: rgba(0,0,0,0.7);
+}
+
+.nav-btn:first-of-type {
+  left: 10px;
+}
+
+.nav-btn:last-of-type {
+  right: 10px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .carousel-img {
+    width: 100%;
+  }
+  .nav-btn {
+    font-size: 1.5rem;
+  }
+}
