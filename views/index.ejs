@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Sharing</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🍳 Recipe Sharing Platform</h1>
+      <a href="/add" class="btn">Add New Recipe</a>
+      <div class="grid">
+        <% recipes.forEach(recipe => { %>
+          <div class="card">
+            <h3><%= recipe.title %></h3>
+            <p><b>Ingredients:</b> <%= recipe.ingredients %></p>
+            <p><b>Instructions:</b> <%= recipe.instructions %></p>
+            <div class="actions">
+              <a href="/edit/<%= recipe._id %>">Edit</a>
+              <a href="/delete/<%= recipe._id %>" class="delete">Delete</a>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </body>
+</html>
