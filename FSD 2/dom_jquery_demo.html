@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM and jQuery Demo</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    #myImage {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      margin: 20px;
+    }
+
+    .box {
+      background-color: lightblue;
+      padding: 10px;
+      margin: 10px;
+      display: inline-block;
+      border-radius: 10px;
+    }
+
+    #parent {
+      margin-top: 30px;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #4CAF50;
+      color: white;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h2 id="title">DOM Manipulation Example</h2>
+  <p class="box">Original Box Text</p>
+
+  <img id="myImage" src="https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/256x256/leaf.png" alt="Placeholder Image">
+
+  <div id="parent">
+    <p id="child">I am a child node.</p>
+  </div>
+
+  <form id="demoForm">
+    <input type="text" name="username" placeholder="Enter name">
+    <button type="button" onclick="accessForm()">Access Form Data</button>
+  </form>
+
+  <br><br>
+  <button onclick="changeDOM()">Change DOM Elements</button>
+  <button onclick="addText()">Add Text Node</button>
+  <button onclick="deleteNode()">Delete Node</button>
+  <button id="jqueryBtn">Use jQuery</button>
+
+  <script>
+    // Access elements and change DOM properties
+    function changeDOM() {
+      document.getElementById("title").innerHTML = "Title Changed via JS!";
+      document.getElementsByClassName("box")[0].style.color = "red";
+      document.getElementById("myImage").src = "https://cdn-icons-png.flaticon.com/512/4337/4337649.png";
+    }
+
+    // Add text node
+    function addText() {
+      let node = document.createTextNode(" - New text added!");
+      document.getElementById("child").appendChild(node);
+    }
+
+    // Delete node
+    function deleteNode() {
+      let parent = document.getElementById("parent");
+      let child = document.getElementById("child");
+      if (child) parent.removeChild(child);
+    }
+
+    // Access form data
+    function accessForm() {
+      let val = document.getElementsByName("username")[0].value;
+      alert("You entered: " + val);
+    }
+
+    // --- jQuery Operations ---
+    $(document).ready(function() {
+      $("#jqueryBtn").click(function() {
+        // Change button text
+        $(this).text("jQuery Applied!");
+
+        // Set background image using jQuery CSS
+        $("body").css("background-image", "linear-gradient(to right, #ffecd2, #fcb69f)");
+
+        // Access form data using jQuery
+        let val = $("input[name='username']").val();
+        alert("Form value (jQuery): " + val);
+
+        // Add new attribute using jQuery
+        $("#myImage").attr("title", "Image changed with jQuery!");
+      });
+    });
+  </script>
+</body>
+</html>

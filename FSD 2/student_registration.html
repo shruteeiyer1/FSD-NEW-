@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #6dd5fa, #ffffff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <form id="regForm" onsubmit="return validateForm()">
+    <h2>Student Registration</h2>
+    <label>Username:</label>
+    <input type="text" id="username"><span class="error" id="userErr"></span>
+
+    <label>Email:</label>
+    <input type="text" id="email"><span class="error" id="emailErr"></span>
+
+    <label>Phone Number:</label>
+    <input type="text" id="phone"><span class="error" id="phoneErr"></span>
+
+    <label>Password:</label>
+    <input type="password" id="password"><span class="error" id="passErr"></span>
+
+    <label>Confirm Password:</label>
+    <input type="password" id="confirm"><span class="error" id="confirmErr"></span>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      // Clear previous errors
+      document.querySelectorAll('.error').forEach(e => e.textContent = '');
+
+      let user = document.getElementById("username").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let phone = document.getElementById("phone").value.trim();
+      let password = document.getElementById("password").value;
+      let confirm = document.getElementById("confirm").value;
+      let valid = true;
+
+      // Username check
+      if (user === "") {
+        document.getElementById("userErr").textContent = "Username cannot be empty";
+        valid = false;
+      }
+
+      // Email check (regex)
+      let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]{3,}\.[a-zA-Z]{2,3}$/;
+      if (!emailPattern.test(email)) {
+        document.getElementById("emailErr").textContent = "Invalid email format";
+        valid = false;
+      }
+
+      // Phone number check (10 digits only)
+      let phonePattern = /^[0-9]{10}$/;
+      if (!phonePattern.test(phone)) {
+        document.getElementById("phoneErr").textContent = "Phone must be 10 digits";
+        valid = false;
+      }
+
+      // Password validation
+      let passPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[&$#@]).{7,}$/;
+      if (!passPattern.test(password)) {
+        document.getElementById("passErr").textContent =
+          "Password must have 7+ chars, 1 capital, 1 digit, 1 special (&,$,#,@)";
+        valid = false;
+      }
+
+      // Confirm password
+      if (password !== confirm) {
+        document.getElementById("confirmErr").textContent = "Passwords do not match";
+        valid = false;
+      }
+
+      return valid;
+    }
+  </script>
+</body>
+</html>
